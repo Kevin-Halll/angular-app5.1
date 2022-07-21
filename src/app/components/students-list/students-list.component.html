@@ -1,0 +1,30 @@
+<section class="w-[60%] m-auto">
+    <!-- banner -->
+    <div class="flex flex-col mt-10 bg-[url('https://gstatic.com/classroom/themes/Honors.jpg')] h-[30vh]">
+        <div class="text-white p-5 mt-auto">
+            <h1 class="text-4xl font-extrabold">Amber Academy</h1>
+            <h2 class="text-3xl">Students List</h2>
+        </div>
+    </div>
+
+    <div class="mt-auto py-3">
+        <a routerLink="/add-student" class="flex items-center gap-3 justify-center ">
+            <i class="fa-solid fa-circle-plus text-3xl"></i>
+            <p>Add a student</p>
+        </a>
+    </div>
+
+    <!-- student list -->
+    <div *ngFor="let student of students">
+        <div class="flex justify-between items-center p-5 border rounded-md shadow-sm my-2">
+            <div class="flex gap-5 items-center">
+                <i class="fa-solid fa-circle-user text-2xl text-[#666]"></i>
+                <p>{{student.name}}</p>
+            </div>
+            <a routerLink="/details/{{student._id}}">
+                <i class="fa-solid fa-circle-info text-2xl text-[#666]"></i>
+            </a>
+        </div>
+    </div>
+   
+</section>

@@ -1,0 +1,41 @@
+<section class="w-[60%] m-auto">
+    <!-- banner -->
+    <div class="flex flex-col mt-10 bg-[url('https://gstatic.com/classroom/themes/Honors.jpg')] h-[30vh]">
+        <div class="text-white p-5 mt-auto">
+            <h1 class="text-4xl font-extrabold">Amber Academy</h1>
+            <h2 class="text-3xl">Students List</h2>
+        </div>
+    </div>
+
+    <form action=""
+    [formGroup]="createStudent" 
+    class="w-[40%] m-auto border-t-4 border-t-[#36474F] mt-5 p-4 shadow-md">
+        <div class="py-2">
+            <label for="" class="text-[#36474F]">Name</label>
+            <input type="text" formControlName="name" name="name" id="name" class="border block w-full p-1"  >
+        </div>
+        <div class="py-2">
+            <label for="" class="text-[#36474F]">Email</label>
+            <input type="text" formControlName="email" name="email" id="email" class="border block w-full p-1">
+        </div>
+        <div class="py-2">
+            <label for="" class="text-[#36474F]">Phone Number</label>
+            <input type="tel" formControlName="phoneNumber" name="phoneNumber" id="phoneNumber" class="border block w-full p-1">
+        </div>
+        <div class="py-2">
+            <label for="" class="text-[#36474F]">Cohort</label>
+            <select formControlName="cohort" name="cohort" id="cohort" class="border block w-full p-1">
+                <option value="" hidden>---Select a Cohort---</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+            </select>
+        </div>
+
+        <div class="py-2 text-center">
+            <button 
+            (click)="addStudent()"
+            class="bg-[#36474F] p-2 text-white">Add Student</button>
+        </div>
+    </form>
+   
+</section>

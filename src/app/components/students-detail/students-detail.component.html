@@ -1,0 +1,57 @@
+<section class="w-[60%] m-auto flex flex-col justify-center h-[90vh]">
+    <!-- banner -->
+    <div class="flex flex-col mt-5 bg-[url('https://gstatic.com/classroom/themes/Honors.jpg')] h-[30vh]">
+        <div class="text-white p-5 mt-auto">
+            <h1 class="text-4xl font-extrabold">Amber Academy</h1>
+            <h2 class="text-3xl">Student Details</h2>
+        </div>
+    </div>
+
+    <table class="mt-5 w-full text-center">
+        <thead class="bg-[#36474F] text-white shadow-sm">
+            <th class="p-2 border">Name</th>
+            <th class="p-2 border">Cohort</th>
+            <th class="p-2 border">Email</th>
+            <th class="p-2 border">Phone Number</th>
+            <th class="p-2 border">Actions</th>
+        </thead>
+
+        <tbody>
+            <tr class="mt-2 border p-3 shadow-sm">
+                <td class="p-2 border">
+                    {{student!.name}}
+                </td>
+                <td class="p-2 border">
+                    {{student!.cohort}}
+                </td>
+                <td class="p-2 border">
+                    {{student!.email}}
+                </td>
+                <td class="p-2 border">
+                    {{student!.phoneNumber}}
+                </td>
+                <td class="p-2 border">
+                    <div class="flex gap-10 justify-center">
+                        <div title="Edit Student">
+                            <a href="updates/{{student?._id}}">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                            </a>
+                        </div>
+                        <div title="Delete Stutent">
+                            <button (click)="removeStudent(student!._id)">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+   
+    <div class="mt-auto">
+        <a routerLink="/" class="flex items-center gap-3 justify-center ">
+            <i class="fa-solid fa-circle-arrow-left text-3xl"></i>
+            <p>Back to students list</p>
+        </a>
+    </div>
+</section>
