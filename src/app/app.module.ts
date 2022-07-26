@@ -12,6 +12,10 @@ import { StudentAddComponent } from './components/student-add/student-add.compon
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { StudentUpdateComponent } from './components/student-update/student-update.component';
+import { AccountListComponent } from './components/account-list/account-list.component';
+import { AccountAddComponent } from './components/account-add/account-add.component';
+import { BankingInfoComponent } from './components/banking-info/banking-info.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +26,11 @@ import { StudentUpdateComponent } from './components/student-update/student-upda
     HighlightDirective,
     Highlight2Directive,
     StudentAddComponent,
-    StudentUpdateComponent
+    StudentUpdateComponent,
+    AccountListComponent,
+    AccountAddComponent,
+    BankingInfoComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,

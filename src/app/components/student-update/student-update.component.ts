@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Students } from 'src/app/services/interfaces';
 import { StudentService } from 'src/app/services/student.service';
 
@@ -28,13 +28,14 @@ export class StudentUpdateComponent implements OnInit {
   get G_cohort() {return this.createStudent.get('cohort')}
   get G_phoneNum() {return this.createStudent.get('phoneNumber')}
 
-  constructor(private studentService:StudentService, private route: ActivatedRoute) { }
+  constructor(private studentService:StudentService, private route: ActivatedRoute, private urlRouter: Router) { }
 
   updateStudent(): void {
     console.log(this.student?._id);
     this.studentService.updateStudent(this.student!._id, this.createStudent.value).subscribe({
       next:(res) => {
         alert("student has been updated")
+        this.urlRouter.navigate([`details/${this.student?._id}`])
       },
       error:() => {
         alert('error updating student')

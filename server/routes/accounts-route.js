@@ -1,17 +1,46 @@
 const express = require('express')
 const { nextTick } = require('process')
 const router = express.Router()
-let Students = require('../model/students')
+let Account = require('../model/accounts_m')
+let Student = require('../model/students')
 
 router.get('/', (req, res) => {
-    Students.find((error,data) => {
+    Account.find((error,data) => {
         if(error){
             return next(error)
         }else{
             res.json(data)
         }
     })
-	// res.send()
+})
+// populate
+router.get('/student-banking-info', (req, res) => {
+    Account.find().populate({path:'studentId'}).exec((error,data) => {
+        if(error){
+            return next(error)
+        }else{
+            res.json(data)
+        }
+    })
+})
+router.get('/student-banking-new', (req, res) => {
+    Student.find().populate({path:'_id'}).exec((error,data) => {
+        if(error){
+            return next(error)
+        }else{
+            res.json(data)
+        }
+    })
+})
+router.get('/student-banking-info/:id', (req, res, next) => {
+    Account.studentId.find({studentId:req.params.id}).populate('studentId').exec((error,data) => {
+        console.log(req.params.id);
+        if(error){
+            return next(error)
+        }else{
+            res.json(data)
+        }
+    })
 })
 
 // mongoose methods
@@ -22,7 +51,7 @@ router.get('/', (req, res) => {
 
 
 router.post('/create', (req,res, next) => {
-    Students.create(req.body, (error,data) => {
+    Account.create(req.body, (error,data) => {
         if(error){
             return next(error)
         }else{
@@ -32,7 +61,7 @@ router.post('/create', (req,res, next) => {
 })
 
 router.get('/find/:id', (req,res) => {
-    Students.findById(req.params.id, (error, data) =>{
+    Account.findById(req.params.id, (error, data) =>{
         if(error){
             return error
         }else{
@@ -42,7 +71,7 @@ router.get('/find/:id', (req,res) => {
 })
 
 router.patch('/update/:id', (req,res, next) => {
-    Students.findByIdAndUpdate({_id:req.params.id}, req.body, (error, data) => {
+    Account.findByIdAndUpdate({_id:req.params.id}, req.body, (error, data) => {
         if(error){
             return next(error)
         }else{
@@ -52,8 +81,8 @@ router.patch('/update/:id', (req,res, next) => {
 })
 
 router.delete('/remove/:id', (req,res) => {
-    Students.findById({_id:req.params.id}, (err, info) => {
-        Students.findOneAndRemove({_id:req.params.id}, (error, data) => {
+    Account.findById({_id:req.params.id}, (err, info) => {
+        Account.findOneAndRemove({_id:req.params.id}, (error, data) => {
             if(info == null) {
                 console.log('item does not exist to delete');
                 return

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, PatternValidator, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { StudentService } from 'src/app/services/student.service';
 
 
@@ -18,12 +19,13 @@ export class StudentAddComponent implements OnInit {
   })
 
   get G_phoneNum() {return this.createStudent.get('phoneNumber')}
-  constructor(private studentService:StudentService) { }
+  constructor(private studentService:StudentService, private urlRouter: Router) { }
 
   addStudent(): void {
     this.studentService.createStudent(this.createStudent.value).subscribe({
       next:(res) => {
         alert("student has been created")
+        this.urlRouter.navigate(['/'])
       },
       error:() => {
         alert('error creating student')

@@ -18,7 +18,6 @@ export class StudentsDetailComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.id = this.route.snapshot.params['_id'];
     this.studentService.studentDetails(this.route.snapshot.params['_id']).subscribe((data: Students) => {
       this.student = data;
       console.log(this.student);      
@@ -26,17 +25,28 @@ export class StudentsDetailComponent implements OnInit {
   }
 
   removeStudent(Id: string): void {
-    this.studentService.deleteStudent(Id).subscribe({
-      next:(res) => {
-        alert("student has been deleted")
-        this.urlRoute.navigate(['/'])
-      },
-      error:(err) => {
-        alert('error deleting student ' + err)
-        console.log(err);
-        
-      }
-    });
+    this.studentService.studentDetails(this.route.snapshot.params['_id']).subscribe((data: Students) => {
+        // console.log(data);
+        if(data == null){
+          alert("datat does not exist")
+          return
+        }
+        this.studentService.deleteStudent(Id).subscribe({
+          next:(res) => {
+            // alert(`student has been deleted ${this.student?.name}`)
+            console.log(this.student);
+            
+            // this.urlRoute.navigate(['/'])
+            
+          },
+          error:(err) => {
+            alert('error deleting student ' + err)
+            console.log(err);
+            
+          }
+        });
+            
+    })
  }
 
 }
